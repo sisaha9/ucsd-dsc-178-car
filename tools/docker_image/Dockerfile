@@ -11,7 +11,8 @@ RUN python3 -m pip install --upgrade pip
 # Add apt-add-repository command.
 RUN apt update && \
     apt install -y \
-        software-properties-common && \
+        software-properties-common \
+        python3-vcstool && \
     rm -rf /var/lib/apt/lists/*
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE || apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key F6E65AC044F831AC80A06380C8B3A55A6F3EFCDE
