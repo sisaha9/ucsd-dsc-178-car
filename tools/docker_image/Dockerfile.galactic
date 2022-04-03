@@ -1,0 +1,71 @@
+ARG BASE_IMAGE=nvcr.io/nvidia/l4t-ml:r32.6.1-py3
+ARG ROS_DISTRO=galactic
+ARG UBUNTU_CODENAME=focal
+
+FROM ${BASE_IMAGE}
+LABEL maintainer="Siddharth Saha <omadityasiddharth123@gmail.com>"
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV SHELL /bin/bash
+SHELL ["/bin/bash", "-c"] 
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        gettext-base \
+        locales \
+        keyboard-configuration && \
+    rm -rf /var/lib/apt/lists/*
+RUN locale-gen en_US.UTF-8; dpkg-reconfigure -f noninteractive locales
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+ENV PYTHONIOENCODING=utf-8
+
+RUN apt update && \
+    apt install -y --no-install-recommends \
+		curl \
+		wget \
+        gnupg \
+		gnupg2 \
+		lsb-release \
+		ca-certificates \
+        apt-utils \
+        python3-pip \
+        git \
+        vim \
+        software-properties-common \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt clean
+
+ARG OPENCV_VERSION="4.5.5"
+ARG OPENCV_DEB=OpenCV-${OPENCV_VERSION}-aarch64.tar.gz
+
+RUN mkdir opencv
+
+COPY OPENCV_DEB opencv/OPENCV_DEB
+
+RUN apt purge -y '*opencv*' || echo "previous OpenCV installation not found" && \
+    cd opencv && \
+    tar -xzvf ${OPENCV_DEB} && \
+    dpkg -i --force-depends *.deb && \
+    apt update && \
+    apt install -y -f --no-install-recommends && \
+    dpkg -i *.deb && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt clean && \
+    cd ../ && \
+    rm -rf opencv && \
+    cp -r /usr/include/opencv4 /usr/local/include/opencv4 && \
+    cp -r /usr/lib/python3.6/dist-packages/cv2 /usr/local/lib/python3.6/dist-packages/cv2
+
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+RUN apt update && \
+    apt install -y ros-${ROS_DISTRO}-desktop
+
+RUN pip3 install --no-cache-dir seaborn \
+                                matplotlib \
+                                pyyaml
+

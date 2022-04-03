@@ -1,0 +1,29 @@
+repositories:
+    src/external/vesc:
+        type: git
+        url: https://github.com/f1tenth/vesc.git
+        version: 82079432d40e8017038c6165ab94ca7d7053bc88
+    src/external/realsense_camera:
+        type: git
+        url: https://github.com/IntelRealSense/realsense-ros.git
+        version: bfcafbe12e05edc0869ec358b7ef73bd835d96ea
+    src/external/sick_lidar:
+        type: git
+        url: https://github.com/SICKAG/sick_scan2.git
+        version: 784c9e5906fcecbb2d79aebc7faf3b21a1ea3496
+    src/external/artemis_imu:
+        type: git
+        url: https://github.com/sisaha9/razor_imu_9dof.git
+        version: f5b1a1616241ced4cd54700edf97ade275deba2c
+    src/external/ublox_gps:
+        type: git
+        url: https://github.com/KumarRobotics/ublox.git
+        version: 24c4722e3579cba3dd34b73f132f8717da4beea7
+    src/external/slam_toolbox:
+        type: git
+        url: https://github.com/SteveMacenski/slam_toolbox.git
+        version: 646ef41b14e2b5f72e721963fafa490afa3d64fc
+    src/external/robot_localization:
+        type: git
+        url: https://github.com/cra-ros-pkg/robot_localization.git
+        version: e711bf0206c803f3c92f31cf705a3f0547f94836
