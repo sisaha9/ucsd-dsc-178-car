@@ -27,3 +27,11 @@ repositories:
         type: git
         url: https://github.com/cra-ros-pkg/robot_localization.git
         version: e711bf0206c803f3c92f31cf705a3f0547f94836
+    src/external/ackermann_mux:
+        type: git
+        url: https://github.com/f1tenth/ackermann_mux.git
+        version: b3c0b083ac03aa8c648537d7e4d22608fcd3440c
+    src/external/teleop_tools:
+        type: git
+        url: https://github.com/f1tenth/teleop_tools.git
+        version: 4337558fd38e0e1a5c08bdd3c7b4b1a9454a74a9
