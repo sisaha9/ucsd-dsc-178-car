@@ -1,6 +1,6 @@
 export ADE_DOCKER_RUN_ARGS="--privileged --cap-add=SYS_PTRACE --add-host ade:127.0.0.1 --net=host --device /dev/dri -v ${HOME}/.Xauthority:${HOME}/.Xauthority:ro -e XAUTHORITY=${HOME}/.Xauthority --publish 9090:9090"
 export ADE_IMAGES="
-  osrf/ros:galactic-desktop
+  arm64v8/ros:galactic
   nvcr.io/nvidia/l4t-pytorch:r32.6.1-pth1.9-py3
   nvcr.io/nvidia/l4t-tensorflow:r32.6.1-tf2.5-py3
 "
