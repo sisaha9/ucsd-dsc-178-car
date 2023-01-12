@@ -1,0 +1,13 @@
+repositories:
+    external/utils/jetsonUtilities:
+        type: git
+        url: git@github.com:UCSD-DSC178/jetsonUtilities.git
+        version: master
+    external/utils/buildOpenCVXavier:
+        type: git
+        url: git@github.com:UCSD-DSC178/buildOpenCVXavier.git
+        version: master
+    external/utils/logitech-f710-module:
+        type: git
+        url: git@github.com:UCSD-DSC178/logitech-f710-module.git
+        version: master

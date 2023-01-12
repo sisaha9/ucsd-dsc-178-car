@@ -3,6 +3,5 @@ install/
 logs/
 log/
 
-CATKIN_IGNORE
-
-src/external
+src/external/
+external/
